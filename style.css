@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+:root {
+    --bg-dark: #040814;
+    --bg-card: rgba(10, 20, 42, 0.6);
+    --accent-blue: #00d2ff;
+    --accent-green: #00ff66;
+    --text-light: #f3f4f6;
+    --text-gray: #9ca3af;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+/* Tiszta CSS Animált Háttér (Kék Gömbök JS nélkül) */
+.bg-orbs {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    z-index: -1;
+    background: radial-gradient(circle at center, #0a1128 0%, #040814 100%);
+    overflow: hidden;
+}
+
+.orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.4;
+    animation: floatOrb 20s infinite alternate ease-in-out;
+}
+
+.orb-1 { width: 400px; height: 400px; background: var(--accent-blue); top: -10%; left: -10%; animation-duration: 25s; }
+.orb-2 { width: 300px; height: 300px; background: #0055ff; bottom: -10%; right: -10%; animation-duration: 30s; animation-direction: alternate-reverse; }
+.orb-3 { width: 250px; height: 250px; background: var(--accent-blue); top: 40%; left: 40%; animation-duration: 35s; }
+
+@keyframes floatOrb {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(150px, 100px) scale(1.2); }
+}
+
+/* Felső Navigációs Sáv */
+header {
+    position: fixed; top: 0; left: 0; width: 100%;
+    padding: 20px 50px;
+    background: rgba(4, 8, 20, 0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 210, 255, 0.1);
+    display: flex; justify-content: space-between; align-items: center;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 24px; font-weight: 700; color: var(--text-light);
+    text-transform: uppercase; text-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
+}
+
+nav { display: flex; gap: 20px; }
+
+.nav-link {
+    text-decoration: none; color: var(--text-gray);
+    font-size: 16px; font-weight: 600; padding: 8px 16px;
+    transition: all 0.4s ease; position: relative;
+}
+
+.nav-link:hover, .nav-link.active { color: var(--accent-blue); }
+
+.nav-link::after {
+    content: ''; position: absolute; bottom: 0; left: 50%;
+    width: 0; height: 2px; background-color: var(--accent-green);
+    transition: all 0.4s ease; transform: translateX(-50%);
+}
+
+.nav-link:hover::after, .nav-link.active::after { width: 70%; }
+
+/* Tartalom Tároló */
+main {
+    margin-top: 100px; padding: 40px 20px;
+    display: flex; justify-content: center; align-items: center;
+    min-height: calc(100vh - 100px);
+    animation: fadeIn 0.8s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.content-wrapper { width: 100%; max-width: 1200px; }
+
+/* Kártyák */
+.card {
+    background: var(--bg-card); backdrop-filter: blur(12px);
+    border: 1px solid rgba(0, 210, 255, 0.15); border-radius: 16px;
+    padding: 40px; box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.card:hover { border-color: rgba(0, 255, 102, 0.4); }
+
+h1 { font-size: 42px; font-weight: 700; margin-bottom: 10px; background: linear-gradient(to right, #fff, var(--accent-blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+h2 { font-size: 28px; color: var(--accent-blue); margin-bottom: 20px; border-left: 4px solid var(--accent-green); padding-left: 15px; }
+h3 { font-size: 22px; margin: 25px 0 10px 0; color: #fff; }
+p { font-size: 18px; color: var(--text-gray); line-height: 1.6; margin-bottom: 15px; }
+
+.highlight { color: var(--accent-green); font-weight: 600; }
+
+/* Rács és Listák (Setup oldalhoz) */
+.setup-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 30px; }
+.setup-block { margin-bottom: 30px; }
+.spec-list { list-style: none; }
+.spec-list li { padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between; font-size: 16px; }
+.spec-list li span:first-child { color: var(--accent-blue); font-weight: 600; }
+.spec-list li span:last-child { color: var(--text-light); }
+
+/* Gombok (Kapcsolat oldalhoz) */
+.btn-discord {
+    display: inline-flex; align-items: center; background: #5865F2; color: white;
+    text-decoration: none; padding: 15px 35px; border-radius: 8px;
+    font-size: 18px; font-weight: 700; margin-top: 20px; transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(88, 101, 242, 0.4); border: 2px solid transparent;
+}
+.btn-discord:hover { transform: scale(1.05); box-shadow: 0 0 25px rgba(0, 255, 102, 0.6); border-color: var(--accent-green); }
+
+/* Végigjátszások Kártyák */
+.grid-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-top: 20px; }
+.game-card { background: #081026; border-radius: 12px; overflow: hidden; border: 1px solid rgba(0, 210, 255, 0.1); text-decoration: none; color: white; display: block; transition: all 0.4s ease; }
+.game-card:hover { transform: translateY(-10px); border-color: var(--accent-green); box-shadow: 0 15px 30px rgba(0, 255, 102, 0.2); }
+.game-img-container { width: 100%; height: 180px; background: #0d1b3e; position: relative; }
+.game-card img { width: 100%; height: 100%; object-fit: cover; }
+.game-info { padding: 20px; background: rgba(10, 20, 42, 0.8); }
+.game-title { font-size: 18px; font-weight: 600; transition: color 0.3s; }
+.game-card:hover .game-title { color: var(--accent-green); }
