@@ -29,9 +29,7 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-/* ==========================================
-   STABIL, ZÉRÓ LAG HÁTTÉR
-   ========================================== */
+/* STABIL, ZÉRÓ LAG HÁTTÉR */
 .bg-orbs {
     position: fixed;
     inset: 0;
@@ -49,9 +47,7 @@ body {
     display: none !important;
 }
 
-/* ==========================================
-   HEADER
-   ========================================== */
+/* HEADER */
 header {
     position: fixed;
     top: 0;
@@ -115,9 +111,7 @@ nav {
     width: 70%;
 }
 
-/* ==========================================
-   MAIN + FADE-IN
-   ========================================== */
+/* MAIN */
 main {
     margin-top: 90px;
     padding: 30px 20px;
@@ -144,9 +138,7 @@ main {
     max-width: 1100px;
 }
 
-/* ==========================================
-   KÁRTYÁK
-   ========================================== */
+/* KÁRTYÁK */
 .card {
     background: var(--bg-card);
     border: 1px solid rgba(0, 210, 255, 0.18);
@@ -200,48 +192,15 @@ p {
     font-weight: 600;
 }
 
-.setup-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 24px;
-}
-
-.setup-block {
-    margin-bottom: 24px;
-}
-
-.spec-list {
-    list-style: none;
-}
-
-.spec-list li {
-    padding: 9px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    display: flex;
-    justify-content: space-between;
-    font-size: 15px;
-    gap: 12px;
-}
-
-.spec-list li span:first-child {
-    color: var(--accent-blue);
-    font-weight: 600;
-    flex-shrink: 0;
-}
-
-.spec-list li span:last-child {
-    color: var(--text-light);
-    text-align: right;
-}
-
 /* ==========================================
-   YOUTUBE CSATORNÁK GLASS SZEKCIÓ
+   GPU-GYILKOS ANIMÁLT GLASS YOUTUBE KÁRTYÁK
    ========================================== */
 .yt-section-card {
-    background: rgba(10, 20, 42, 0.75);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(0, 210, 255, 0.2);
+    background: rgba(10, 20, 42, 0.65);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(0, 210, 255, 0.25);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(0, 210, 255, 0.05);
 }
 
 .yt-channels-grid {
@@ -252,25 +211,28 @@ p {
 }
 
 .yt-channel-card {
-    background: rgba(8, 16, 38, 0.6);
-    border: 1px solid rgba(0, 210, 255, 0.15);
-    border-radius: 12px;
-    padding: 20px 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(0, 210, 255, 0.2);
+    border-radius: 16px;
+    padding: 24px 16px;
     text-align: center;
     text-decoration: none;
     display: flex;
     flex-direction: column;
     align-items: center;
-    transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    transition: all 0.35s cubic-bezier(0.15, 0.85, 0.35, 1.2);
     transform: translateZ(0);
+    will-change: transform, border-color, box-shadow, background;
 }
 
 .yt-channel-card:hover {
-    transform: translateY(-4px) translateZ(0);
+    transform: translateY(-8px) scale(1.02) translateZ(0);
     border-color: var(--accent-green);
-    background: rgba(13, 27, 62, 0.8);
+    background: rgba(0, 210, 255, 0.07);
+    box-shadow: 0 15px 35px rgba(0, 255, 102, 0.2), inset 0 0 15px rgba(0, 255, 102, 0.1);
 }
 
 .yt-avatar {
@@ -278,10 +240,18 @@ p {
     height: 90px;
     border-radius: 50%;
     overflow: hidden;
-    border: 2px solid rgba(0, 210, 255, 0.3);
-    margin-bottom: 14px;
+    border: 2px solid rgba(0, 210, 255, 0.4);
+    margin-bottom: 16px;
     background: #0d1b3e;
     flex-shrink: 0;
+    box-shadow: 0 0 15px rgba(0, 210, 255, 0.3);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.yt-channel-card:hover .yt-avatar {
+    border-color: var(--accent-green);
+    box-shadow: 0 0 25px rgba(0, 255, 102, 0.5);
+    transform: rotate(3deg);
 }
 
 .yt-avatar img {
@@ -292,7 +262,7 @@ p {
 }
 
 .yt-info {
-    margin-bottom: 14px;
+    margin-bottom: 18px;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
@@ -300,42 +270,41 @@ p {
 }
 
 .yt-title {
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 600;
     color: var(--text-light);
-    margin-bottom: 6px;
-    line-height: 1.3;
-    transition: color 0.2s ease;
+    line-height: 1.4;
+    transition: color 0.3s ease;
 }
 
 .yt-channel-card:hover .yt-title {
     color: var(--accent-green);
-}
-
-.yt-subs {
-    font-size: 13px;
-    color: var(--text-gray);
+    text-shadow: 0 0 10px rgba(0, 255, 102, 0.4);
 }
 
 .yt-btn {
     display: inline-block;
-    background: rgba(255, 255, 255, 0.08);
-    color: var(--text-gray);
+    background: rgba(0, 210, 255, 0.1);
+    color: var(--accent-blue);
     font-size: 13px;
     font-weight: 600;
-    padding: 7px 18px;
+    padding: 8px 22px;
     border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    transition: all 0.2s ease;
+    border: 1px solid rgba(0, 210, 255, 0.3);
+    backdrop-filter: blur(4px);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .yt-channel-card:hover .yt-btn {
-    background: rgba(0, 255, 102, 0.15);
-    color: var(--accent-green);
-    border-color: rgba(0, 255, 102, 0.3);
+    background: var(--accent-green);
+    color: var(--bg-dark);
+    border-color: var(--accent-green);
+    box-shadow: 0 0 20px rgba(0, 255, 102, 0.6);
+    transform: scale(1.05);
 }
 
-/* GOMBOK ÉS KÁRTYÁK EGYÉB HELYEKEN */
+/* EGYÉB GOMBOK ÉS KÁRTYÁK */
 .btn-discord {
     display: inline-flex;
     align-items: center;
@@ -411,9 +380,7 @@ p {
     color: var(--accent-green);
 }
 
-/* ==========================================================================
-   MOBIL
-   ========================================================================== */
+/* MOBIL */
 @media (max-width: 768px) {
     header {
         padding: 12px 16px;
